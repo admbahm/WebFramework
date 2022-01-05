@@ -9,6 +9,6 @@ class WelcomeWikiPage : Base(){
     fun welcomePageAssets() {
         driver!!.get("https://en.wikipedia.org/wiki/Main_Page")
         Assert.assertEquals(driver!!.currentUrl, "https://en.wikipedia.org/wiki/Main_Page")
-        Thread.sleep(5000)
+        Thread.sleep(1000)
     }
 }
