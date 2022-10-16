@@ -1,7 +1,7 @@
 # WebFramework
 Basic Website UI automation framework
 
-<h1 align="center">Hi 👋, I'm Adam Deane</h1>
+<h1 align="center">Hi 👋 I'm Adam Deane</h1>
 <h3 align="center">A super curious mobile dev from Texas</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=admbahm&label=Profile%20views&color=0e75b6&style=flat" alt="admbahm" /> </p>
