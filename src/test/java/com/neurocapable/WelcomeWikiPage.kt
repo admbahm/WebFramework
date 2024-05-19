@@ -17,6 +17,20 @@ class WelcomeWikiPage : Base() {
         WebDriverWait(driver, waitTime).until(ExpectedConditions.titleContains("Wikipedia"))
     }
 
+    @Test
+    fun verifyPageElements() {
+        driver!!.get("https://en.wikipedia.org/wiki/Main_Page")
+
+        // Verify the existence of the search input field
+        val searchInput: WebElement = driver!!.findElement(By.id("searchInput"))
+        Assert.assertNotNull(searchInput)
+
+        // Verify the existence and text of the main heading
+        val mainHeading: WebElement = driver!!.findElement(By.id("mp-welcome"))
+        Assert.assertEquals(mainHeading.text, "Welcome to Wikipedia")
+    }
+
+
 //    @Test
 //    fun countTheOccurrences() {
 //        val waitTime = Duration.ofSeconds(5)
@@ -134,6 +148,70 @@ class WelcomeWikiPage : Base() {
         // Assert that the page load time is below the threshold (example: 3000 milliseconds)
         Assert.assertTrue(loadTime < 3000).toString()
     }
+
+//    @Test
+//    fun checkResponsiveDesign() {
+//        // Define a wait time of 5 seconds
+//        val waitTime = Duration.ofSeconds(5)
+//
+//        // Navigate to the Wikipedia main page
+//        driver!!.get("https://en.wikipedia.org/wiki/Main_Page")
+//
+//        // Wait until the page title contains "Wikipedia"
+//        WebDriverWait(driver, waitTime).until(ExpectedConditions.titleContains("Wikipedia"))
+//
+//        // Resize browser window to a small screen size (e.g., 800x600)
+//        driver!!.manage().window().setSize(org.openqa.selenium.Dimension(800, 600))
+//
+//        // Wait a moment to ensure the page has adjusted
+//        Thread.sleep(1000)
+//
+//        // Check that the search bar is visible and properly located
+//        val searchBarSmall: WebElement = driver!!.findElement(By.id("searchInput"))
+////        Assert.assertTrue("Search bar should be visible on small screen", searchBarSmall.isDisplayed.toString())
+//        Assert.assertEquals(searchBarSmall.isDisplayed == True)
+//
+//        // Resize browser window to a large screen size (e.g., 1920x1080)
+//        driver!!.manage().window().setSize(org.openqa.selenium.Dimension(1920, 1080))
+//
+//        // Wait a moment to ensure the page has adjusted
+//        Thread.sleep(1000)
+//
+//        // Check that the search bar is still visible and properly located
+//        val searchBarLarge: WebElement = driver!!.findElement(By.id("searchInput"))
+//        Assert.assertTrue("Search bar should be visible on large screen", searchBarLarge.isDisplayed)
+//
+//        // Additional checks can be performed for other key elements
+//        // For example, check if the main header adjusts correctly
+//        val mainHeader: WebElement = driver!!.findElement(By.id("firstHeading"))
+//        Assert.assertTrue("Main header should be visible on large screen", mainHeader.isDisplayed)
+//    }
+
+    @Test
+    fun testNavigation() {
+        driver!!.get("https://en.wikipedia.org/wiki/Main_Page")
+
+        // Click on a link
+        val link: WebElement = driver!!.findElement(By.linkText("Contents"))
+        link.click()
+
+        // Wait for the new page to load and verify the URL
+        WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlContains("Contents"))
+        Assert.assertTrue(driver!!.currentUrl.contains("Contents"))
+    }
+
+//    @Test
+//    fun takeScreenshot() {
+//        driver!!.get("https://en.wikipedia.org/wiki/Main_Page")
+//
+//        // Take a screenshot
+//        val screenshot = (driver as TakesScreenshot).getScreenshotAs(OutputType.FILE)
+//        FileUtils.copyFile(screenshot, File("screenshots/main_page.png"))
+//
+//        Assert.assertTrue(File("screenshots/main_page.png").exists())
+//    }
+
+
 }
 
 
