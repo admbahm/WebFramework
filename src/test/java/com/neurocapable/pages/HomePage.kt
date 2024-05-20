@@ -37,6 +37,30 @@ class HomePage(driver: WebDriver) : BasePage(driver) {
         return welcomeSection.text
     }
 
+    fun getSearchInput(): WebElement {
+        // Wait for the search input to be present
+        val wait = WebDriverWait(driver, Duration.ofSeconds(10))
+        return wait.until(ExpectedConditions.presenceOfElementLocated(searchInputLocator))
+    }
+
+    fun getNavLink(linkText: String): WebElement {
+        // Wait for the navigation link to be present
+        val wait = WebDriverWait(driver, Duration.ofSeconds(10))
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(linkText)))
+    }
+
+    fun getFeaturedArticle(): WebElement {
+        // Wait for the featured article section to be present
+        val wait = WebDriverWait(driver, Duration.ofSeconds(10))
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.id("mp-tfa")))
+    }
+
+    fun getLanguageLink(language: String): WebElement {
+        // Wait for the language link to be present
+        val wait = WebDriverWait(driver, Duration.ofSeconds(10))
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(language)))
+    }
+
     fun refetchElements() {
         PageFactory.initElements(driver, this)
     }
